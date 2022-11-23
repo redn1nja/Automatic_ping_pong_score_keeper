@@ -1,0 +1,4 @@
+../Core/Src/main.c:71:5:main	16	static
+../Core/Src/main.c:134:6:SystemClock_Config	128	static
+../Core/Src/main.c:188:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:207:6:assert_failed	16	static
