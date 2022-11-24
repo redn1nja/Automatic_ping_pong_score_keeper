@@ -24,7 +24,6 @@
 #include "tim.h"
 #include "usb_device.h"
 #include "gpio.h"
-#include "usbd_cdc_if.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -71,7 +70,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
- uint16_t AD_RES = 0;
+  uint16_t maxym = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -99,7 +98,9 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+  HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
 
+//  char* str = malloc(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,16 +115,15 @@ int main(void)
 	// Poll ADC1 Perihperal & TimeOut = 1mSec
 	HAL_ADC_PollForConversion(&hadc1, 1);
 	// Read The ADC Conversion Result & Map It To PWM DutyCycle
-	AD_RES = HAL_ADC_GetValue(&hadc1);
-	TIM2->CCR1 = (AD_RES<<4);
+	maxym = HAL_ADC_GetValue(&hadc1);
 
-	char* str = malloc(6);
-	sprintf(str, "%d\n", AD_RES);
-	CDC_Transmit_FS(str, strlen(str));
-//	CDC_Transmit_FS("\n", strlen("\n"));
+	CDC_Transmit_FS(&maxym, 2);
+
+//	sprintf(str, "0 %d 4092\n", maxym);
+//	CDC_Transmit_FS(str, strlen(str));
 //	HAL_Delay(2000);
-	free(str);
   }
+//  free(str);
   /* USER CODE END 3 */
 }
 
