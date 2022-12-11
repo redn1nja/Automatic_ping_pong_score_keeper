@@ -1,0 +1,6 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h:173:13:esp_nn_aligned_s8_pad_with_value	32	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h:194:13:esp_nn_aligned_s8_pad_end_with_value	32	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/convolution/esp_nn_depthwise_conv_opt.c:18:5:esp_nn_get_depthwise_conv_scratch_size_opt	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/convolution/esp_nn_depthwise_conv_opt.c:26:6:esp_nn_set_depthwise_conv_scratch_buf_opt	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/convolution/esp_nn_depthwise_conv_opt.c:33:13:esp_nn_depthwise_conv_s8_ch_mult_1	848	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/convolution/esp_nn_depthwise_conv_opt.c:160:6:esp_nn_depthwise_conv_s8_opt	880	static
