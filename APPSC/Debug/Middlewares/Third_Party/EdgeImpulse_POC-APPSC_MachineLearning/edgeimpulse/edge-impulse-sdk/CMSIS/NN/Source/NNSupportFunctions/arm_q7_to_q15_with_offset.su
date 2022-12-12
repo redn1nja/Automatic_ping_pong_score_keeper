@@ -1,1 +1,0 @@
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/NN/Source/NNSupportFunctions/arm_q7_to_q15_with_offset.c:42:6:arm_q7_to_q15_with_offset	152	static,ignoring_inline_asm

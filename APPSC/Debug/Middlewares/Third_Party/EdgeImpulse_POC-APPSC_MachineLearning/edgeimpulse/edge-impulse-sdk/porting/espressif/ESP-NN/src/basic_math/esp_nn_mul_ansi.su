@@ -1,3 +1,0 @@
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h:173:13:esp_nn_aligned_s8_pad_with_value	32	static
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h:194:13:esp_nn_aligned_s8_pad_end_with_value	32	static
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/espressif/ESP-NN/src/basic_math/esp_nn_mul_ansi.c:18:6:esp_nn_mul_elementwise_s8_ansi	224	static

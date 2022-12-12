@@ -1,2 +1,0 @@
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_time.cpp:42:9:int32_t tflite::ticks_per_second()	4	static
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_time.cpp:48:9:int32_t tflite::GetCurrentTimeTicks()	4	static
