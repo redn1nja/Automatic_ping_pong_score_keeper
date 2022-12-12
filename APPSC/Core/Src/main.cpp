@@ -148,7 +148,7 @@ int main(void)
 //		maxym = HAL_ADC_GetValue(&hadc1);
 //
 //	}
-	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8<<classif, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8<<classif, GPIO_PIN_RESET);
 	ei_impulse_result_t result = { 0 };
 	EI_IMPULSE_ERROR res = run_classifier(&signal, &result, true);
 	float max_val = -1;
@@ -158,7 +158,7 @@ int main(void)
 			classif = ix;
 		}
 		}
-	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8<<classif, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8<<classif, GPIO_PIN_SET);
 
   }
   /* USER CODE END 3 */
