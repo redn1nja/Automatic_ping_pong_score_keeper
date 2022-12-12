@@ -101,7 +101,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uint16_t maxym = 0;
+//  uint16_t maxym = 0;
+  size_t classif = 0 ;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -134,7 +135,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
-//  char* str = malloc(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -148,39 +148,21 @@ int main(void)
 //		maxym = HAL_ADC_GetValue(&hadc1);
 //
 //	}
-
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8<<classif, GPIO_PIN_RESET);
 	ei_impulse_result_t result = { 0 };
 	EI_IMPULSE_ERROR res = run_classifier(&signal, &result, true);
-	ei_printf("run_classifier returned: %d\n", res);
-
-	ei_printf("Predictions (DSP: %d ms., Classification: %d ms., Anomaly: %d ms.): \n",
-	  result.timing.dsp, result.timing.classification, result.timing.anomaly);
-
-	// print the predictions
-	ei_printf("[");
+	float max_val = -1;
 	for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
-	  ei_printf_float(result.classification[ix].value);
-	#if EI_CLASSIFIER_HAS_ANOMALY == 1
-	  ei_printf(", ");
-	#else
-	  if (ix != EI_CLASSIFIER_LABEL_COUNT - 1) {
-		  ei_printf(", ");
-	  }
-	#endif
-	}
-	#if EI_CLASSIFIER_HAS_ANOMALY == 1
-	ei_printf_float(result.anomaly);
-	#endif
-	ei_printf("]\n\n\n");
+		if(result.classification[ix].value>max_val){
+			max_val = result.classification[ix].value;
+			classif = ix;
+		}
+		}
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8<<classif, GPIO_PIN_SET);
 
-
-
-//		CDC_Transmit_FS(reinterpret_cast<uint8_t*>(&maxym), 2*200);
   }
-//  free(str);
   /* USER CODE END 3 */
 }
-
 /**
   * @brief System Clock Configuration
   * @retval None

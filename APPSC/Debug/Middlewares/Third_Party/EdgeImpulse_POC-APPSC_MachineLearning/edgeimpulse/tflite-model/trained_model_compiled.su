@@ -1,0 +1,13 @@
+c:\ostap\stm32cubeide_1.10.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\tools\bin\../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:297:15:void* {anonymous}::AllocatePersistentBuffer(TfLiteContext*, size_t)	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:332:21:TfLiteStatus {anonymous}::RequestScratchBufferInArena(TfLiteContext*, size_t, int*)	32	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:358:14:void* {anonymous}::GetScratchBuffer(TfLiteContext*, int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:365:22:TfLiteTensor* {anonymous}::GetTensor(const TfLiteContext*, int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:370:26:TfLiteEvalTensor* {anonymous}::GetEvalTensor(const TfLiteContext*, int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:377:14:TfLiteStatus trained_model_init(void* (*)(size_t, size_t))	88	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:472:15:TfLiteTensor* trained_model_input(int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:479:15:TfLiteTensor* trained_model_output(int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:483:14:TfLiteStatus trained_model_invoke()	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:553:14:TfLiteStatus trained_model_reset(void (*)(void*))	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:567:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/tflite-model/trained_model_compiled.cpp:567:1:cpp)	8	static

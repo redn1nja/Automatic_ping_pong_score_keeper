@@ -1,0 +1,2 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/DSP/Include/dsp/svm_functions.h:64:27:arm_exponent_f32	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/DSP/Source/SVMFunctions/arm_svm_polynomial_predict_f32.c:460:6:arm_svm_polynomial_predict_f32	56	static
