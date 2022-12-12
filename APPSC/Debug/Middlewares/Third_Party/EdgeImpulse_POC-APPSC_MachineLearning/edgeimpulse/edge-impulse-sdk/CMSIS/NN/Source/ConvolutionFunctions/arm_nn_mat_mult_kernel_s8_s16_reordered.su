@@ -1,1 +1,0 @@
-../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s8_s16_reordered.c:43:7:arm_nn_mat_mult_kernel_s8_s16_reordered	1064	static,ignoring_inline_asm
