@@ -20,11 +20,12 @@
 #include "main.h"
 #include "adc.h"
 #include "crc.h"
+#include "dma.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
-
+#include "usart.h"
 #include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -50,7 +51,7 @@ void vprint(const char *fmt, va_list argp)
     char string[200];
     if(0 < vsprintf(string, fmt, argp)) // build string
     {
-       CDC_Transmit_FS(reinterpret_cast<uint8_t*>(string), sizeof(string));
+    	HAL_UART_Transmit(&huart2, (uint8_t*)string, strlen(string), 0xffffff);
     }
 }
 
@@ -101,7 +102,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uint16_t maxym = 0;
+//  uint16_t maxym = 0;
+  size_t classif = 0 ;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -110,7 +112,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+	signal_t signal;
+	signal.total_length = sizeof(features) / sizeof(features[0]);
+	signal.get_data = &get_feature_data;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -122,16 +126,17 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
   MX_CRC_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
-//  char* str = malloc(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -145,41 +150,27 @@ int main(void)
 //		maxym = HAL_ADC_GetValue(&hadc1);
 //
 //	}
-	signal_t signal;
-	signal.total_length = sizeof(features) / sizeof(features[0]);
-	signal.get_data = &get_feature_data;
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8<<classif, GPIO_PIN_RESET);
 	ei_impulse_result_t result = { 0 };
 	EI_IMPULSE_ERROR res = run_classifier(&signal, &result, true);
-	ei_printf("run_classifier returned: %d\n", res);
-
-	ei_printf("Predictions (DSP: %d ms., Classification: %d ms., Anomaly: %d ms.): \n",
-	  result.timing.dsp, result.timing.classification, result.timing.anomaly);
-
-	// print the predictions
-	ei_printf("[");
+	float max_val = -1;
 	for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
-	  ei_printf_float(result.classification[ix].value);
-	#if EI_CLASSIFIER_HAS_ANOMALY == 1
-	  ei_printf(", ");
-	#else
-	  if (ix != EI_CLASSIFIER_LABEL_COUNT - 1) {
-		  ei_printf(", ");
-	  }
-	#endif
-	}
-	#if EI_CLASSIFIER_HAS_ANOMALY == 1
-	ei_printf_float(result.anomaly);
-	#endif
-	ei_printf("]\n\n\n");
+		if(result.classification[ix].value>max_val){
+			max_val = result.classification[ix].value;
+			classif = ix;
+		}
+		}
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8<<classif, GPIO_PIN_SET);
 
-
-
-//		CDC_Transmit_FS(reinterpret_cast<uint8_t*>(&maxym), 2*200);
   }
-//  free(str);
   /* USER CODE END 3 */
 }
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	if(GPIO_Pin == GPIO_Pin_1){
+		HAL_GPIO_TogglePin(GPIOD, GPIO_Pin_8);
+	}
+}
 /**
   * @brief System Clock Configuration
   * @retval None

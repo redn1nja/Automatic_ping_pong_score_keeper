@@ -19,9 +19,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "crc.h"
+#include "dma.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
+#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 
@@ -37,8 +40,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//ADC_HandleTypeDef hadc1;
-//TIM_HandleTypeDef htim2;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,7 +71,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uint16_t maxym = 0;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -91,16 +92,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
+  MX_CRC_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-  HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
 
-//  char* str = malloc(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,20 +111,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	// Start ADC Conversion
-	HAL_ADC_Start(&hadc1);
-	// Poll ADC1 Perihperal & TimeOut = 1mSec
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	// Read The ADC Conversion Result & Map It To PWM DutyCycle
-	maxym = HAL_ADC_GetValue(&hadc1);
-
-	CDC_Transmit_FS(&maxym, 2);
-
-//	sprintf(str, "0 %d 4092\n", maxym);
-//	CDC_Transmit_FS(str, strlen(str));
-//	HAL_Delay(2000);
   }
-//  free(str);
   /* USER CODE END 3 */
 }
 
@@ -166,8 +154,9 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB|RCC_PERIPHCLK_I2C1
-                              |RCC_PERIPHCLK_ADC12;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB|RCC_PERIPHCLK_USART2
+                              |RCC_PERIPHCLK_I2C1|RCC_PERIPHCLK_ADC12;
+  PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   PeriphClkInit.Adc12ClockSelection = RCC_ADC12PLLCLK_DIV1;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   PeriphClkInit.USBClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
