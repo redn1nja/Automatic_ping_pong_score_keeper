@@ -37,7 +37,7 @@ using namespace ei;
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-volatile uint16_t features[200];
+uint16_t features[200];
 bool sampled = false;
 void vprint(const char *fmt, va_list argp)
 {
@@ -56,9 +56,7 @@ void ei_printf(const char *format, ...) {
 }
 int get_feature_data(size_t offset, size_t length, float *out_ptr) {
 //	 memcpy(out_ptr, (features + offset), length * sizeof(float));
-	for (int var = 0; var < offset; ++var) {
-		out_ptr[var] = features[var];
-	}
+	numpy::int16_to_float(reinterpret_cast<const int16_t*>(&features), out_ptr, length);
 	 return 0;
 }
 /* USER CODE END PTD */
@@ -193,7 +191,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 			HAL_ADC_Start(&hadc1);
 			HAL_ADC_PollForConversion(&hadc1, 100);
 			maxym = HAL_ADC_GetValue(&hadc1);
-			HAL_UART_Transmit(&huart2, reinterpret_cast<uint8_t*>(&maxym), sizeof(maxym), 1);
+//			HAL_UART_Transmit(&huart2, reinterpret_cast<uint8_t*>(&maxym), sizeof(maxym), 1);
 			features[var] = maxym;
 
 		}
