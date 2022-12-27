@@ -1,0 +1,6 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.h:40:3:tflite::MicroErrorReporter::~MicroErrorReporter()	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.cpp:31:6:void {anonymous}::Log(const char*, va_list)	264	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.cpp:63:5:virtual int tflite::MicroErrorReporter::Report(const char*, va_list)	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.h:40:3:virtual tflite::MicroErrorReporter::~MicroErrorReporter()	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.cpp:47:6:)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_error_reporter.cpp:56:16:tflite::ErrorReporter* tflite::GetMicroErrorReporter()	0	static

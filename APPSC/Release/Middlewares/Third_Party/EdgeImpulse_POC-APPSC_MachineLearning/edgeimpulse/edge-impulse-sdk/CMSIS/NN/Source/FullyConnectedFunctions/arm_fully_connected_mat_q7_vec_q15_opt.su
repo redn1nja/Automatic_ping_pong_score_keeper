@@ -1,0 +1,1 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_mat_q7_vec_q15_opt.c:116:12:arm_fully_connected_mat_q7_vec_q15_opt	80	static,ignoring_inline_asm

@@ -1,0 +1,6 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.h:32:11:tflite::MicroProfiler::~MicroProfiler()	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.cpp:25:10:virtual uint32_t tflite::MicroProfiler::BeginEvent(const char*)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.cpp:36:6:virtual void tflite::MicroProfiler::EndEvent(uint32_t)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.h:32:11:virtual tflite::MicroProfiler::~MicroProfiler()	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.cpp:41:9:int32_t tflite::MicroProfiler::GetTotalTicks() const	12	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/micro_profiler.cpp:49:6:void tflite::MicroProfiler::Log() const	40	static

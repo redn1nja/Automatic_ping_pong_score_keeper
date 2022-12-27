@@ -1,0 +1,10 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:28:40:EI_IMPULSE_ERROR ei_run_impulse_check_canceled()	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:32:40:EI_IMPULSE_ERROR ei_sleep(int32_t)	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:37:10:uint64_t ei_read_timer_ms()	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:41:10:uint64_t ei_read_timer_us()	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:45:28:)	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:52:28:void ei_printf_float(float)	80	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:98:29:void* ei_malloc(size_t)	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:102:29:void* ei_calloc(size_t, size_t)	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:106:28:void ei_free(void*)	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/porting/stm32-cubeai/ei_classifier_porting.cpp:113:28:void DebugLog(const char*)	8	static

@@ -1,0 +1,2 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/ethosu.cpp:183:21:TfLiteRegistration* tflite::Register_ETHOSU()	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/ethosu.cpp:185:13:const char* tflite::GetString_ETHOSU()	0	static
