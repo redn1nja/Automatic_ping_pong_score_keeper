@@ -38,7 +38,7 @@ using namespace ei;
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 uint16_t features[200];
-bool sampled = false;
+volatile bool sampled = false;
 void vprint(const char *fmt, va_list argp)
 {
     char string[200];
@@ -57,6 +57,7 @@ void ei_printf(const char *format, ...) {
 int get_feature_data(size_t offset, size_t length, float *out_ptr) {
 //	 memcpy(out_ptr, (features + offset), length * sizeof(float));
 	numpy::int16_to_float(reinterpret_cast<const int16_t*>(&features), out_ptr, length);
+	ei_printf("done\n");
 	 return 0;
 }
 /* USER CODE END PTD */
@@ -136,7 +137,8 @@ signal_t signal;
   while (1)
   {
 	if(sampled){
-		signal.total_length = sizeof(features) / sizeof(features[0]);
+		HAL_Delay(1000);
+		signal.total_length = EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE;
 		signal.get_data = &get_feature_data;
 		ei_impulse_result_t result = { 0 };
 		EI_IMPULSE_ERROR res = run_classifier(&signal, &result, true);
@@ -188,12 +190,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	uint16_t maxym = 0;
 	if(GPIO_Pin == GPIO_PIN_1){
 		for (int var = 0; var < 200; ++var) {
-			HAL_ADC_Start(&hadc1);
-			HAL_ADC_PollForConversion(&hadc1, 100);
-			maxym = HAL_ADC_GetValue(&hadc1);
-//			HAL_UART_Transmit(&huart2, reinterpret_cast<uint8_t*>(&maxym), sizeof(maxym), 1);
-			features[var] = maxym;
-
+			HAL_ADC_Start_DMA(&hadc1, reinterpret_cast<uint32_t*>(&features), 200);
 		}
 	sampled = true;
 	}
