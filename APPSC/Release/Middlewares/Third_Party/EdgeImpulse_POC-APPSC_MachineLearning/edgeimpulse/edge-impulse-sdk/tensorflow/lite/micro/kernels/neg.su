@@ -1,0 +1,4 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/kernels/internal/types.h:202:3:tflite::RuntimeShape::~RuntimeShape()	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/kernels/internal/types.h:213:18:int32_t tflite::RuntimeShape::Dims(int) const	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/neg.cpp:30:14:TfLiteStatus tflite::ops::micro::neg::Eval(TfLiteContext*, TfLiteNode*)	72	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/neg.cpp:53:20:TfLiteRegistration tflite::ops::micro::Register_NEG()	8	static

@@ -1,0 +1,6 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:232:6:void kf_work(kiss_fft_cpx*, const kiss_fft_cpx*, size_t, int, int*, kiss_fft_cfg)	104	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:333:14:kiss_fft_state* kiss_fft_alloc(int, int, void*, size_t*, size_t*)	48	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:376:6:void kiss_fft_stride(kiss_fft_cfg, const kiss_fft_cpx*, kiss_fft_cpx*, int)	32	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:390:6:void kiss_fft(kiss_fft_cfg, const kiss_fft_cpx*, kiss_fft_cpx*)	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:396:6:void kiss_fft_cleanup()	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/dsp/kissfft/kiss_fft.cpp:401:5:int kiss_fft_next_fast_size(int)	12	static

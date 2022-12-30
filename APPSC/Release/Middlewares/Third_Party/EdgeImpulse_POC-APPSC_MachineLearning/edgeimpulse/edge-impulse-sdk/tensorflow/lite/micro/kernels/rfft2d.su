@@ -1,0 +1,5 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/rfft2d.cpp:73:7:void* tflite::ops::micro::rfft2d::Init(TfLiteContext*, const char*, size_t)	8	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/rfft2d.cpp:80:14:TfLiteStatus tflite::ops::micro::rfft2d::Prepare(TfLiteContext*, TfLiteNode*)	80	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/rfft2d.cpp:47:6:bool tflite::ops::micro::rfft2d::IsPowerOfTwo(uint32_t)	0	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/rfft2d.cpp:126:14:TfLiteStatus tflite::ops::micro::rfft2d::Eval(TfLiteContext*, TfLiteNode*)	88	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/rfft2d.cpp:191:20:TfLiteRegistration tflite::Register_RFFT2D()	16	static

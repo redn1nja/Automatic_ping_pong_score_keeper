@@ -1,0 +1,1 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_RGB.c:80:12:arm_convolve_HWC_q7_RGB	128	static,ignoring_inline_asm

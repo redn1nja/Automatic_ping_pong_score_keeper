@@ -1,0 +1,1 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/CMSIS/DSP/Source/FilteringFunctions/arm_conv_partial_fast_opt_q15.c:59:12:arm_conv_partial_fast_opt_q15	40	static,ignoring_inline_asm

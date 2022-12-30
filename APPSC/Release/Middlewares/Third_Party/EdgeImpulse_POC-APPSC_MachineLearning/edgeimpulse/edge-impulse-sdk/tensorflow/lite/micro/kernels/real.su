@@ -1,0 +1,5 @@
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/real.cpp:72:14:TfLiteStatus tflite::ops::micro::real::RealEval(TfLiteContext*, TfLiteNode*)	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/real.cpp:90:14:TfLiteStatus tflite::ops::micro::real::ImagEval(TfLiteContext*, TfLiteNode*)	24	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/real.cpp:41:14:TfLiteStatus tflite::ops::micro::real::Prepare(TfLiteContext*, TfLiteNode*)	48	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/real.cpp:112:20:TfLiteRegistration tflite::Register_REAL()	16	static
+../Middlewares/Third_Party/EdgeImpulse_POC-APPSC_MachineLearning/edgeimpulse/edge-impulse-sdk/tensorflow/lite/micro/kernels/real.cpp:123:20:TfLiteRegistration tflite::Register_IMAG()	16	static
