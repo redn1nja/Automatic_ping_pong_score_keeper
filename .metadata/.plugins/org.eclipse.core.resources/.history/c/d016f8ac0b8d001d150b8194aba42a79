@@ -1,0 +1,30 @@
+#include "i2c.h"
+//#include "uart.h"
+#include "stdlib.h"
+#include "LiquidCrystal_PCF8574.h"
+
+uint16_t var;
+char str[40];
+
+int main()
+	{
+		USART2_Init();
+		i2c_init();
+		lcd_init();
+		lcd_clear();
+
+	while(1)
+
+		{
+		setCursor(0,0);
+		lcd_send_string("LCD 2004 I2C w STM32");
+		setCursor(0,1);
+		lcd_send_string("EmbeddedExpert.io");
+		setCursor(0,2);
+		lcd_send_string("Bare Metal");
+		setCursor(0,3);
+		sprintf(str,"var=%d",++var);
+		lcd_send_string(str);
+		for (int i=0;i<100000;i++);
+			}
+		}
