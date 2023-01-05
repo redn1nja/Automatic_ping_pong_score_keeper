@@ -30,7 +30,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-typedef enum state_t{R_SERVE, L_SERVE} state_t;
+typedef enum state_t{IDLE_S, START, R_SERVE, L_SERVE, R_SCORE, L_SСORE,
+	UPDATE_SCOREM, UNSURE, END} state_t;
 volatile state_t state = IDLE_S;
 /* USER CODE END PTD */
 
