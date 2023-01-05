@@ -1,0 +1,10 @@
+#ifndef __uart__h
+#define __uart__h
+#include "stm32f4xx.h"                  // Device header
+void USART2_Init(void);
+
+void UART_Write_String(char *p);
+
+
+
+#endif
