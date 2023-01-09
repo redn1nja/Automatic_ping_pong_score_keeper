@@ -1,0 +1,9 @@
+../Core/Src/lcd5110_hal.c:21:25:xy_to_pix	32	static
+../Core/Src/lcd5110_hal.c:30:6:LCD5110_clrscr	24	static
+../Core/Src/lcd5110_hal.c:36:6:LCD5110_fillscr	24	static
+../Core/Src/lcd5110_hal.c:42:6:LCD5110_putpix	32	static
+../Core/Src/lcd5110_hal.c:53:6:LCD5110_setpix	32	static
+../Core/Src/lcd5110_hal.c:61:6:LCD5110_clrpix	32	static
+../Core/Src/lcd5110_hal.c:69:6:LCD5110_invpix	32	static
+../Core/Src/lcd5110_hal.c:78:6:LCD5110_fill_region	32	static
+../Core/Src/lcd5110_hal.c:87:6:LCD5110_drawBitmap	40	static

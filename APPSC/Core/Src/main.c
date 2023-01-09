@@ -58,6 +58,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+LCD5110_display lcd1;
 /* USER CODE END 0 */
 
 /**
@@ -90,7 +91,19 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   MX_USB_PCD_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
+  lcd1.hw_conf.spi_handle = &hspi2;
+  lcd1.hw_conf.spi_cs_pin =  LCD_CS_Pin;
+  lcd1.hw_conf.spi_cs_port = LCD_CS_GPIO_Port;
+  lcd1.hw_conf.rst_pin =  LCD_RST_Pin;
+  lcd1.hw_conf.rst_port = LCD_RST_GPIO_Port;
+  lcd1.hw_conf.dc_pin =  LCD_DC_Pin;
+  lcd1.hw_conf.dc_port = LCD_DC_GPIO_Port;
+  lcd1.def_scr = lcd5110_def_scr;
+  LCD5110_init(&lcd1.hw_conf, LCD5110_NORMAL_MODE, 0x40, 2, 3);
+
+  LCD5110_print("Hello world!\n", BLACK, &lcd1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,7 +111,7 @@ int main(void)
   while (1){
 
     /* USER CODE END WHILE */
-
+  }
     /* USER CODE BEGIN 3 */
   /* USER CODE END 3 */
 }

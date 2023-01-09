@@ -60,8 +60,8 @@ all: main-build
 main-build: APPSC.elf secondary-outputs
 
 # Tool invocations
-APPSC.elf APPSC.map: $(OBJS) $(USER_OBJS) /Users/tarasyaroshko/STM32CubeIDE/GameLogic/APPSC/STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "APPSC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/tarasyaroshko/STM32CubeIDE/GameLogic/APPSC/STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="APPSC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+APPSC.elf APPSC.map: $(OBJS) $(USER_OBJS) C:\Users\Lenovo\Desktop\2022_Fall\PCO\APPSC_FSM\APPSC\STM32F303VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "APPSC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Lenovo\Desktop\2022_Fall\PCO\APPSC_FSM\APPSC\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="APPSC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -9,6 +9,9 @@ C_SRCS += \
 ../Core/Src/i2c.c \
 ../Core/Src/i2c_config.c \
 ../Core/Src/i2c_lcd.c \
+../Core/Src/lcd5110.c \
+../Core/Src/lcd5110_hal.c \
+../Core/Src/lcd5110_ll.c \
 ../Core/Src/main.c \
 ../Core/Src/spi.c \
 ../Core/Src/stm32f3xx_hal_msp.c \
@@ -23,6 +26,9 @@ OBJS += \
 ./Core/Src/i2c.o \
 ./Core/Src/i2c_config.o \
 ./Core/Src/i2c_lcd.o \
+./Core/Src/lcd5110.o \
+./Core/Src/lcd5110_hal.o \
+./Core/Src/lcd5110_ll.o \
 ./Core/Src/main.o \
 ./Core/Src/spi.o \
 ./Core/Src/stm32f3xx_hal_msp.o \
@@ -37,6 +43,9 @@ C_DEPS += \
 ./Core/Src/i2c.d \
 ./Core/Src/i2c_config.d \
 ./Core/Src/i2c_lcd.d \
+./Core/Src/lcd5110.d \
+./Core/Src/lcd5110_hal.d \
+./Core/Src/lcd5110_ll.d \
 ./Core/Src/main.d \
 ./Core/Src/spi.d \
 ./Core/Src/stm32f3xx_hal_msp.d \
@@ -54,7 +63,7 @@ Core/Src/%.o Core/Src/%.su: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/i2c.d ./Core/Src/i2c.o ./Core/Src/i2c.su ./Core/Src/i2c_config.d ./Core/Src/i2c_config.o ./Core/Src/i2c_config.su ./Core/Src/i2c_lcd.d ./Core/Src/i2c_lcd.o ./Core/Src/i2c_lcd.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32f3xx_hal_msp.d ./Core/Src/stm32f3xx_hal_msp.o ./Core/Src/stm32f3xx_hal_msp.su ./Core/Src/stm32f3xx_it.d ./Core/Src/stm32f3xx_it.o ./Core/Src/stm32f3xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f3xx.d ./Core/Src/system_stm32f3xx.o ./Core/Src/system_stm32f3xx.su ./Core/Src/usb.d ./Core/Src/usb.o ./Core/Src/usb.su
+	-$(RM) ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/i2c.d ./Core/Src/i2c.o ./Core/Src/i2c.su ./Core/Src/i2c_config.d ./Core/Src/i2c_config.o ./Core/Src/i2c_config.su ./Core/Src/i2c_lcd.d ./Core/Src/i2c_lcd.o ./Core/Src/i2c_lcd.su ./Core/Src/lcd5110.d ./Core/Src/lcd5110.o ./Core/Src/lcd5110.su ./Core/Src/lcd5110_hal.d ./Core/Src/lcd5110_hal.o ./Core/Src/lcd5110_hal.su ./Core/Src/lcd5110_ll.d ./Core/Src/lcd5110_ll.o ./Core/Src/lcd5110_ll.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32f3xx_hal_msp.d ./Core/Src/stm32f3xx_hal_msp.o ./Core/Src/stm32f3xx_hal_msp.su ./Core/Src/stm32f3xx_it.d ./Core/Src/stm32f3xx_it.o ./Core/Src/stm32f3xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f3xx.d ./Core/Src/system_stm32f3xx.o ./Core/Src/system_stm32f3xx.su ./Core/Src/usb.d ./Core/Src/usb.o ./Core/Src/usb.su
 
 .PHONY: clean-Core-2f-Src
 
