@@ -31,6 +31,8 @@ Core/Src/lcd5110.o: ../Core/Src/lcd5110.c ../Core/Inc/lcd5110.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../Core/Inc/gpio.h ../Core/Inc/lcd5110_hal.h ../Core/Inc/font6x8.h
 ../Core/Inc/lcd5110.h:
 ../Core/Inc/lcd5110_ll.h:
@@ -67,6 +69,8 @@ Core/Src/lcd5110.o: ../Core/Src/lcd5110.c ../Core/Inc/lcd5110.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/lcd5110_hal.h:
 ../Core/Inc/font6x8.h:

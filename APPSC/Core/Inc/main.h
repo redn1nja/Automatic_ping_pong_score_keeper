@@ -65,6 +65,7 @@ void Error_Handler(void);
 #define MEMS_INT3_GPIO_Port GPIOE
 #define MEMS_INT4_Pin GPIO_PIN_5
 #define MEMS_INT4_GPIO_Port GPIOE
+#define MEMS_INT4_EXTI_IRQn EXTI9_5_IRQn
 #define OSC32_IN_Pin GPIO_PIN_14
 #define OSC32_IN_GPIO_Port GPIOC
 #define OSC32_OUT_Pin GPIO_PIN_15
@@ -103,6 +104,12 @@ void Error_Handler(void);
 #define LCD_DC_GPIO_Port GPIOB
 #define LCD_RST_Pin GPIO_PIN_14
 #define LCD_RST_GPIO_Port GPIOB
+#define OPPOSITEHIT_BTN_Pin GPIO_PIN_9
+#define OPPOSITEHIT_BTN_GPIO_Port GPIOD
+#define OPPOSITEHIT_BTN_EXTI_IRQn EXTI9_5_IRQn
+#define TABLEHIT_BTN_Pin GPIO_PIN_10
+#define TABLEHIT_BTN_GPIO_Port GPIOD
+#define TABLEHIT_BTN_EXTI_IRQn EXTI15_10_IRQn
 #define DM_Pin GPIO_PIN_11
 #define DM_GPIO_Port GPIOA
 #define DP_Pin GPIO_PIN_12

@@ -21,12 +21,14 @@
 #include "main.h"
 #include "i2c.h"
 #include "spi.h"
+#include "tim.h"
 #include "usb.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lcd5110.h"
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,7 +49,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+bool state = true;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,6 +94,7 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_PCD_Init();
   MX_SPI2_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   lcd1.hw_conf.spi_handle = &hspi2;
   lcd1.hw_conf.spi_cs_pin =  LCD_CS_Pin;
@@ -101,9 +104,10 @@ int main(void)
   lcd1.hw_conf.dc_pin =  LCD_DC_Pin;
   lcd1.hw_conf.dc_port = LCD_DC_GPIO_Port;
   lcd1.def_scr = lcd5110_def_scr;
-  LCD5110_init(&lcd1.hw_conf, LCD5110_NORMAL_MODE, 0x40, 2, 3);
-
-  LCD5110_print("Hello world!\n", BLACK, &lcd1);
+//  LCD5110_init(&lcd1.hw_conf, LCD5110_NORMAL_MODE, 0x40, 2, 3);
+//
+//  LCD5110_set_cursor(0, 23, &lcd1);
+//  LCD5110_print("Hello world!\n", BLACK, &lcd1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -155,9 +159,11 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB|RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB|RCC_PERIPHCLK_I2C1
+                              |RCC_PERIPHCLK_TIM1;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   PeriphClkInit.USBClockSelection = RCC_USBCLKSOURCE_PLL;
+  PeriphClkInit.Tim1ClockSelection = RCC_TIM1CLK_HCLK;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -165,7 +171,31 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if((GPIO_Pin == TABLEHIT_BTN_Pin || GPIO_Pin == OPPOSITEHIT_BTN_Pin) && state == true){
+		HAL_TIM_Base_Start_IT(&htim1);
+		state = false;
+	}
+}
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(!HAL_GPIO_ReadPin(OPPOSITEHIT_BTN_GPIO_Port, OPPOSITEHIT_BTN_Pin)){
+		HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+		HAL_TIM_Base_Start_IT(&htim1);
+	}
+	else if (!HAL_GPIO_ReadPin(TABLEHIT_BTN_GPIO_Port, TABLEHIT_BTN_Pin)) {
+		HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+		HAL_TIM_Base_Start_IT(&htim1);
+	}
+	else {
+		HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+		state = true;
+		HAL_TIM_Base_Stop_IT(&htim1);
+	}
+}
 /* USER CODE END 4 */
 
 /**
