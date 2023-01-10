@@ -68,7 +68,7 @@ void print_score(LCD5110_display* lcd_conf) {
 	LCD5110_clear_scr(lcd_conf);
 	LCD5110_set_cursor(1, 22, lcd_conf);
 	LCD5110_printf(lcd_conf, BLACK, "L:%u", l_score);
-	LCD5110_set_cursor(60, 22, lcd_conf);
+	LCD5110_set_cursor(70, 22, lcd_conf);
 	LCD5110_printf(lcd_conf, BLACK, "R:%u", r_score);
 	LCD5110_refresh(lcd_conf);
 }
@@ -125,7 +125,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1){
-
+	  while (l_score < 22) {
+		  while (r_score < 22) {
+			  print_score(&lcd1);
+			  r_score++;
+			  HAL_Delay(250);
+		  }
+		  l_score++;
+	  }
     /* USER CODE END WHILE */
   }
     /* USER CODE BEGIN 3 */
