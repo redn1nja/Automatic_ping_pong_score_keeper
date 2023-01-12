@@ -74,26 +74,23 @@ void print_score(LCD5110_display *lcd_conf) {
 	LCD5110_set_cursor(60, 22, lcd_conf);
 	LCD5110_printf(lcd_conf, BLACK, "R:%u", r_score);
 	LCD5110_refresh(lcd_conf);
+}
+void print_score_text(LCD5110_display *lcd_conf, const char* str) {
+	print_score(lcd_conf);
 	LCD5110_set_cursor(1, 40, lcd_conf);
-	switch (state) {
-	case START:
-		LCD5110_print("SELECT PLAYER (L/R)\n", BLACK, lcd_conf);
-		break;
-	case END:
-		LCD5110_print("GAME OVER!\n", BLACK, lcd_conf);
-		if (l_score == 11) {
-			LCD5110_print("LEFT PLAYER WON\n! ", BLACK, lcd_conf);
-		} else {
-			LCD5110_print("RIGHT PLAYER WON\n! ", BLACK, lcd_conf);
-		}
-		break;
-	}
+	LCD5110_print(str, BLACK, lcd_conf);
+	LCD5110_refresh(lcd_conf);
 }
 
 void update_score(state_t winner) {
 	if (winner == L_SERVE) {
 		l_score++;
-		print_score(&lcd1);
+		if (l_score == 11) {
+			print_score_text(&lcd1, "LEFT WON!");
+			state = END;
+		} else {
+			print_score(&lcd1);
+		}
 		if ((l_score + r_score) % 2 == 0) {
 			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
 		} else {
@@ -103,7 +100,12 @@ void update_score(state_t winner) {
 	}
 	else if (winner == R_SERVE) {
 		r_score++;
-		print_score(&lcd1);
+		if (r_score == 11) {
+			print_score_text(&lcd1, "RIGHT WON!");
+			state = END;
+		} else {
+			print_score(&lcd1);
+		}
 		if ((l_score + r_score) % 2 == 0) {
 			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
 		} else {
@@ -156,7 +158,7 @@ int main(void) {
 	lcd1.def_scr = lcd5110_def_scr;
 	LCD5110_init(&lcd1.hw_conf, LCD5110_NORMAL_MODE, 0x40, 2, 3);
 
-	print_score(&lcd1);
+	print_score_text(&lcd1, "SELECT PLAYER (L/R)\n");
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
