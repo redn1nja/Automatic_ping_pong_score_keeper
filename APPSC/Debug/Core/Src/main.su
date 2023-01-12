@@ -1,6 +1,7 @@
 ../Core/Src/main.c:70:6:print_score	16	static
-../Core/Src/main.c:98:5:main	24	static
-../Core/Src/main.c:153:6:SystemClock_Config	128	static
-../Core/Src/main.c:197:6:HAL_GPIO_EXTI_Callback	16	static
-../Core/Src/main.c:204:6:HAL_TIM_PeriodElapsedCallback	16	static
-../Core/Src/main.c:326:6:Error_Handler	4	static
+../Core/Src/main.c:93:6:update_score	16	static
+../Core/Src/main.c:121:5:main	24	static
+../Core/Src/main.c:176:6:SystemClock_Config	128	static
+../Core/Src/main.c:220:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/main.c:227:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:309:6:Error_Handler	4	static

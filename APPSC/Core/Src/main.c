@@ -89,6 +89,29 @@ void print_score(LCD5110_display *lcd_conf) {
 		break;
 	}
 }
+
+void update_score(state_t winner) {
+	if (winner == L_SERVE) {
+		l_score++;
+		print_score(&lcd1);
+		if ((l_score + r_score) % 2 == 0) {
+			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+		} else {
+			state = server;
+		}
+		server = state;
+	}
+	else if (winner == R_SERVE) {
+		r_score++;
+		print_score(&lcd1);
+		if ((l_score + r_score) % 2 == 0) {
+			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+		} else {
+			state = server;
+		}
+		server = state;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -227,93 +250,53 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		break;
 	}
 	// tablehit (left side)
-	if (!HAL_GPIO_ReadPin(TABLEHIT_BTN_GPIO_Port, TABLEHIT_BTN_Pin)) {
-		HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-		if (state == START) {
-			state = L_SERVE;
-			server = L_SERVE;
-		} else if (state == L_SERVE) {
-			state = L_WAIT;
-		} else if (state == R_SERVE) {
-			l_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
+	if (!listening) {
+		listening = true;
+		if (!HAL_GPIO_ReadPin(TABLEHIT_BTN_GPIO_Port, TABLEHIT_BTN_Pin)) {
+			HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
+			if (state == START) {
 				state = L_SERVE;
-			} else {
-				state = R_SERVE;
-			}
-			server = state;
-		} else if (state == L_WAIT) {
-			r_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
-				state = R_SERVE;
-			} else {
-				state = L_SERVE;
-			}
-			server = state;
-		} else if (state == R_WAIT) {
-			state = L_TURN;
-		} else if (state == L_TURN) {
-			r_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
-				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
-			} else {
-				state = server;
-			}
-			server = state;
-		} else if (state == R_TURN) {
-			state = L_TURN;
+				server = L_SERVE;
+			} else if (state == L_SERVE) {
+				state = L_WAIT;
+			} else if (state == R_SERVE) {
+				update_score(L_SERVE);
+			} else if (state == L_WAIT) {
+				update_score(R_SERVE);
+			} else if (state == R_WAIT) {
+				state = L_TURN;
+			} else if (state == L_TURN) {
+				update_score(R_SERVE);
+			} else if (state == R_TURN) {
+				state = L_TURN;
+			};
+			HAL_TIM_Base_Start_IT(&htim1);
 		}
-		HAL_TIM_Base_Start_IT(&htim1);
-	}
-	// oppositehit (right side)
-	else if (!HAL_GPIO_ReadPin(OPPOSITEHIT_BTN_GPIO_Port,
-	OPPOSITEHIT_BTN_Pin)) {
-		HAL_GPIO_WritePin(LD7_GPIO_Port, LD7_Pin, GPIO_PIN_SET);
-		if (state == START) {
-			state = R_SERVE;
-			server = state;
-		} else if (state == R_SERVE) {
-			state = R_WAIT;
-		} else if (state == L_SERVE) {
-			r_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
+		// oppositehit (right side)
+		else if (!HAL_GPIO_ReadPin(OPPOSITEHIT_BTN_GPIO_Port,
+		OPPOSITEHIT_BTN_Pin)) {
+			HAL_GPIO_WritePin(LD7_GPIO_Port, LD7_Pin, GPIO_PIN_SET);
+			if (state == START) {
 				state = R_SERVE;
-			} else {
-				state = L_SERVE;
+				server = state;
+			} else if (state == R_SERVE) {
+				state = R_WAIT;
+			} else if (state == L_SERVE) {
+				update_score(R_SERVE);
+			} else if (state == R_WAIT) {
+				update_score(L_SERVE);
+			} else if (state == L_WAIT) {
+				state = R_TURN;
+			} else if (state == R_TURN) {
+				update_score(L_SERVE);
+			} else if (state == L_TURN) {
+				state = R_TURN;
 			}
-			server = state;
-		} else if (state == R_WAIT) {
-			l_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
-				state = L_SERVE;
-			} else {
-				state = R_SERVE;
-			}
-			server = state;
-		} else if (state == L_WAIT) {
-			state = R_TURN;
-		} else if (state == R_TURN) {
-			l_score++;
-			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
-				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
-			} else {
-				state = server;
-			}
-			server = state;
-		} else if (state == L_TURN) {
-			state = R_TURN;
+			HAL_TIM_Base_Start_IT(&htim1);
 		}
-		HAL_TIM_Base_Start_IT(&htim1);
 	} else {
 		HAL_GPIO_WritePin(LD7_GPIO_Port, LD7_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_RESET);
-		listening = true;
 		HAL_TIM_Base_Stop_IT(&htim1);
 	}
 }
