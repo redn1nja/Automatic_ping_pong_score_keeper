@@ -75,7 +75,7 @@ void print_score(LCD5110_display *lcd_conf) {
 	LCD5110_printf(lcd_conf, BLACK, "R:%u", r_score);
 	LCD5110_refresh(lcd_conf);
 }
-void print_score_text(LCD5110_display *lcd_conf, const char* str) {
+void print_score_text(LCD5110_display *lcd_conf, const char *str) {
 	print_score(lcd_conf);
 	LCD5110_set_cursor(1, 40, lcd_conf);
 	LCD5110_print(str, BLACK, lcd_conf);
@@ -90,28 +90,27 @@ void update_score(state_t winner) {
 			state = END;
 		} else {
 			print_score(&lcd1);
+			if ((l_score + r_score) % 2 == 0) {
+				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+			} else {
+				state = server;
+			}
+			server = state;
 		}
-		if ((l_score + r_score) % 2 == 0) {
-			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
-		} else {
-			state = server;
-		}
-		server = state;
-	}
-	else if (winner == R_SERVE) {
+	} else if (winner == R_SERVE) {
 		r_score++;
 		if (r_score == 11) {
 			print_score_text(&lcd1, "RIGHT WON!");
 			state = END;
 		} else {
 			print_score(&lcd1);
+			if ((l_score + r_score) % 2 == 0) {
+				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+			} else {
+				state = server;
+			}
+			server = state;
 		}
-		if ((l_score + r_score) % 2 == 0) {
-			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
-		} else {
-			state = server;
-		}
-		server = state;
 	}
 }
 /* USER CODE END 0 */

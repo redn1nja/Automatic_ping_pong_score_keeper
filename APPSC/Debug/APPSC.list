@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00020319  00000000  00000000  0003bec8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00018da4  00000000  00000000  0005c1e1  2**0
+ 18 .debug_line   00018db4  00000000  00000000  0005c1e1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000bb041  00000000  00000000  00074f85  2**0
+ 19 .debug_str    000bb041  00000000  00000000  00074f95  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  0012ffc6  2**0
+ 20 .comment      00000050  00000000  00000000  0012ffd6  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000055c8  00000000  00000000  00130018  2**2
+ 21 .debug_frame  000055c8  00000000  00000000  00130028  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1958,7 +1958,7 @@ void print_score(LCD5110_display *lcd_conf) {
  8000d5c:	08005570 	.word	0x08005570
 
 08000d60 <print_score_text>:
-void print_score_text(LCD5110_display *lcd_conf, const char* str) {
+void print_score_text(LCD5110_display *lcd_conf, const char *str) {
  8000d60:	b580      	push	{r7, lr}
  8000d62:	b082      	sub	sp, #8
  8000d64:	af00      	add	r7, sp, #0
@@ -2021,13 +2021,17 @@ void update_score(state_t winner) {
  8000dc4:	4b36      	ldr	r3, [pc, #216]	; (8000ea0 <update_score+0x10c>)
  8000dc6:	2208      	movs	r2, #8
  8000dc8:	701a      	strb	r2, [r3, #0]
- 8000dca:	e002      	b.n	8000dd2 <update_score+0x3e>
-		} else {
+				state = server;
+			}
+			server = state;
+		}
+	}
+}
+ 8000dca:	e05f      	b.n	8000e8c <update_score+0xf8>
 			print_score(&lcd1);
  8000dcc:	4833      	ldr	r0, [pc, #204]	; (8000e9c <update_score+0x108>)
  8000dce:	f7ff ff97 	bl	8000d00 <print_score>
-		}
-		if ((l_score + r_score) % 2 == 0) {
+			if ((l_score + r_score) % 2 == 0) {
  8000dd2:	4b30      	ldr	r3, [pc, #192]	; (8000e94 <update_score+0x100>)
  8000dd4:	781b      	ldrb	r3, [r3, #0]
  8000dd6:	b2da      	uxtb	r2, r3
@@ -2039,7 +2043,7 @@ void update_score(state_t winner) {
  8000de2:	f003 0301 	and.w	r3, r3, #1
  8000de6:	2b00      	cmp	r3, #0
  8000de8:	d10a      	bne.n	8000e00 <update_score+0x6c>
-			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
  8000dea:	4b2f      	ldr	r3, [pc, #188]	; (8000ea8 <update_score+0x114>)
  8000dec:	781b      	ldrb	r3, [r3, #0]
  8000dee:	b2db      	uxtb	r3, r3
@@ -2051,28 +2055,21 @@ void update_score(state_t winner) {
  8000dfa:	4b29      	ldr	r3, [pc, #164]	; (8000ea0 <update_score+0x10c>)
  8000dfc:	701a      	strb	r2, [r3, #0]
  8000dfe:	e004      	b.n	8000e0a <update_score+0x76>
-		} else {
-			state = server;
+				state = server;
  8000e00:	4b29      	ldr	r3, [pc, #164]	; (8000ea8 <update_score+0x114>)
  8000e02:	781b      	ldrb	r3, [r3, #0]
  8000e04:	b2da      	uxtb	r2, r3
  8000e06:	4b26      	ldr	r3, [pc, #152]	; (8000ea0 <update_score+0x10c>)
  8000e08:	701a      	strb	r2, [r3, #0]
-		}
-		server = state;
+			server = state;
  8000e0a:	4b25      	ldr	r3, [pc, #148]	; (8000ea0 <update_score+0x10c>)
  8000e0c:	781b      	ldrb	r3, [r3, #0]
  8000e0e:	b2da      	uxtb	r2, r3
  8000e10:	4b25      	ldr	r3, [pc, #148]	; (8000ea8 <update_score+0x114>)
  8000e12:	701a      	strb	r2, [r3, #0]
-		} else {
-			state = server;
-		}
-		server = state;
-	}
 }
  8000e14:	e03a      	b.n	8000e8c <update_score+0xf8>
-	else if (winner == R_SERVE) {
+	} else if (winner == R_SERVE) {
  8000e16:	79fb      	ldrb	r3, [r7, #7]
  8000e18:	2b01      	cmp	r3, #1
  8000e1a:	d137      	bne.n	8000e8c <update_score+0xf8>
@@ -2098,11 +2095,12 @@ void update_score(state_t winner) {
  8000e3c:	4b18      	ldr	r3, [pc, #96]	; (8000ea0 <update_score+0x10c>)
  8000e3e:	2208      	movs	r2, #8
  8000e40:	701a      	strb	r2, [r3, #0]
- 8000e42:	e002      	b.n	8000e4a <update_score+0xb6>
+}
+ 8000e42:	e023      	b.n	8000e8c <update_score+0xf8>
 			print_score(&lcd1);
  8000e44:	4815      	ldr	r0, [pc, #84]	; (8000e9c <update_score+0x108>)
  8000e46:	f7ff ff5b 	bl	8000d00 <print_score>
-		if ((l_score + r_score) % 2 == 0) {
+			if ((l_score + r_score) % 2 == 0) {
  8000e4a:	4b12      	ldr	r3, [pc, #72]	; (8000e94 <update_score+0x100>)
  8000e4c:	781b      	ldrb	r3, [r3, #0]
  8000e4e:	b2da      	uxtb	r2, r3
@@ -2114,7 +2112,7 @@ void update_score(state_t winner) {
  8000e5a:	f003 0301 	and.w	r3, r3, #1
  8000e5e:	2b00      	cmp	r3, #0
  8000e60:	d10a      	bne.n	8000e78 <update_score+0xe4>
-			state = (server == R_SERVE) ? L_SERVE : R_SERVE;
+				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
  8000e62:	4b11      	ldr	r3, [pc, #68]	; (8000ea8 <update_score+0x114>)
  8000e64:	781b      	ldrb	r3, [r3, #0]
  8000e66:	b2db      	uxtb	r3, r3
@@ -2126,13 +2124,13 @@ void update_score(state_t winner) {
  8000e72:	4b0b      	ldr	r3, [pc, #44]	; (8000ea0 <update_score+0x10c>)
  8000e74:	701a      	strb	r2, [r3, #0]
  8000e76:	e004      	b.n	8000e82 <update_score+0xee>
-			state = server;
+				state = server;
  8000e78:	4b0b      	ldr	r3, [pc, #44]	; (8000ea8 <update_score+0x114>)
  8000e7a:	781b      	ldrb	r3, [r3, #0]
  8000e7c:	b2da      	uxtb	r2, r3
  8000e7e:	4b08      	ldr	r3, [pc, #32]	; (8000ea0 <update_score+0x10c>)
  8000e80:	701a      	strb	r2, [r3, #0]
-		server = state;
+			server = state;
  8000e82:	4b07      	ldr	r3, [pc, #28]	; (8000ea0 <update_score+0x10c>)
  8000e84:	781b      	ldrb	r3, [r3, #0]
  8000e86:	b2da      	uxtb	r2, r3
