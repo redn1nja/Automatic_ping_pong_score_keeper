@@ -56,6 +56,7 @@ volatile state_t server;
 volatile uint8_t l_score = 0;
 volatile uint8_t r_score = 0;
 volatile bool listening = true;
+volatile bool deuce = false;
 LCD5110_display lcd1;
 /* USER CODE END PV */
 
@@ -73,6 +74,10 @@ void print_score(LCD5110_display *lcd_conf) {
 	LCD5110_printf(lcd_conf, BLACK, "L:%u", l_score);
 	LCD5110_set_cursor(60, 22, lcd_conf);
 	LCD5110_printf(lcd_conf, BLACK, "R:%u", r_score);
+	if (deuce) {
+		LCD5110_set_cursor(1, 40, lcd_conf);
+		LCD5110_print("DEUCE", BLACK, lcd_conf);
+	}
 	LCD5110_refresh(lcd_conf);
 }
 void print_score_text(LCD5110_display *lcd_conf, const char *str) {
@@ -85,12 +90,15 @@ void print_score_text(LCD5110_display *lcd_conf, const char *str) {
 void update_score(state_t winner) {
 	if (winner == L_SERVE) {
 		l_score++;
-		if (l_score == 11) {
+		if (r_score == 10 && l_score == 10) {
+			deuce = true;
+		} else if ((l_score == 11 && !deuce)
+				|| (l_score - r_score > 1 && deuce)) {
 			print_score_text(&lcd1, "LEFT WON!");
 			state = END;
 		} else {
 			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
+			if (((l_score + r_score) % 2 == 0 && !deuce) || deuce) {
 				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
 			} else {
 				state = server;
@@ -99,12 +107,15 @@ void update_score(state_t winner) {
 		}
 	} else if (winner == R_SERVE) {
 		r_score++;
-		if (r_score == 11) {
+		if (r_score == 10 && l_score == 10) {
+			deuce = true;
+		} else if ((r_score == 11 && !deuce)
+				|| (r_score - l_score > 1 && deuce)) {
 			print_score_text(&lcd1, "RIGHT WON!");
 			state = END;
 		} else {
 			print_score(&lcd1);
-			if ((l_score + r_score) % 2 == 0) {
+			if (((l_score + r_score) % 2 == 0 && !deuce) || deuce) {
 				state = (server == R_SERVE) ? L_SERVE : R_SERVE;
 			} else {
 				state = server;
