@@ -18,12 +18,29 @@ Peaks found:
 
 ## [Predefence #2](https://docs.google.com/presentation/d/1Y51iK64kRnoQn8WuYitMMo7ChrXf7JN7aYCZU_rgBgo/edit#slide=id.g1c31464959f_2_0)
 
-## [Predefence #3](https://docs.google.com/presentation/d/19uyxuohUU7DYo5pHPFj-YEt1fol1QqGYeuHdZflqrxI/edit#slide=id.g181c9e7557d_1_40)
+## [Final defence](https://docs.google.com/presentation/d/19uyxuohUU7DYo5pHPFj-YEt1fol1QqGYeuHdZflqrxI/edit#slide=id.g181c9e7557d_1_40)
 
 Throughout the development of the project, we decided to use Edge Impulse as our AI-model of choice and, because of the need for continious classification, to transfer the data to the microcontroller via DMA (direct memory access) and not RTOS (real-time operation system).
+
+At first, we used Arduino Uno to collect the samples required (tablehit -- ball hitting the left part of the tennis table, oppositehit -- ball hitting the right part of the table, silence -- no sound of hitting the table (but any other sound is allowed)). 
+After the collection of the samples and training the model using Edge Impulse service, we used Edge Impulse CLI and its Data Forwarder to test our mechanism of recognizing samples. Before that, we had to properly cut our samples so that the model would recognize them with reasonable frequency, and got the accuracy of almost 90%.
+
+
+<img width="437" alt="Screenshot 2023-01-18 at 09 36 41" src="https://user-images.githubusercontent.com/91616317/213111608-d0150281-09ea-474a-9203-7c04c669db08.png">
+
+
+Having completed the successful deployment of our AI-model to the microcontroller itself (as CMSIS-PACK), we started retraining the model on the samples collected using the STM32 ADC (analog-to-digital converter) and got pretty similar results (accuracy ~ 90%).  
+<img width="330" alt="Screenshot 2023-01-18 at 09 36 49" src="https://user-images.githubusercontent.com/91616317/213111628-ee2bee1b-47e1-4622-9246-74db4375b200.png">
+
 
 
 We used Nokia LCD 5110 as the display, STM32F3DISCO as our microcontoroller of choice and KY038 as microphone to recognize the sound.
 The game logic (according to the rules of table tennis) was implemented using the FSM (finite state machine). Here is the diagram of states of the game logic:
+![FSM_APPSC](https://user-images.githubusercontent.com/91616317/213109929-a9b48bba-d170-4b68-b867-5e8258771dab.jpg)
 
-Connection schema:
+
+Connection schema for the display and the microphone:
+
+
+<img width="561" alt="Screenshot 2023-01-18 at 09 31 11" src="https://user-images.githubusercontent.com/91616317/213110343-4ced4045-e0b8-46d4-8d9c-6db7a655a810.png">
+
