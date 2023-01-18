@@ -14,3 +14,16 @@ Peaks found:
 Peaks found:
 
 ![photo_2022-10-28_18-08-04](https://user-images.githubusercontent.com/70999143/198669938-6b63663f-1e6f-441d-b1ee-4496fda03f43.jpg)
+
+
+## [Predefence #2](https://docs.google.com/presentation/d/1Y51iK64kRnoQn8WuYitMMo7ChrXf7JN7aYCZU_rgBgo/edit#slide=id.g1c31464959f_2_0)
+
+## [Predefence #3](https://docs.google.com/presentation/d/19uyxuohUU7DYo5pHPFj-YEt1fol1QqGYeuHdZflqrxI/edit#slide=id.g181c9e7557d_1_40)
+
+Throughout the development of the project, we decided to use Edge Impulse as our AI-model of choice and, because of the need for continious classification, to transfer the data to the microcontroller via DMA (direct memory access) and not RTOS (real-time operation system).
+
+
+We used Nokia LCD 5110 as the display, STM32F3DISCO as our microcontoroller of choice and KY038 as microphone to recognize the sound.
+The game logic (according to the rules of table tennis) was implemented using the FSM (finite state machine). Here is the diagram of states of the game logic:
+
+Connection schema:
